@@ -38,7 +38,7 @@ class AddrSpace {
 					// for now!
     unsigned int numPages;		// Number of pages in the virtual 
 					// address space
-    SpaceId spaceID;  // pid
+    SpaceId spaceID;  			// pid
 };
 
 #endif // ADDRSPACE_H

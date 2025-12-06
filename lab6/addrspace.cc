@@ -103,7 +103,6 @@ AddrSpace::AddrSpace(OpenFile *executable)
     for (i = 0; i < numPages; i++) {
 	pageTable[i].virtualPage = i;	
 	pageTable[i].physicalPage = freeMM_Map->Find();
-	printf("虚拟页号： %d 分配的物理块号：%d\n",i,pageTable[i].physicalPage);
 	pageTable[i].valid = TRUE;
 	pageTable[i].use = FALSE;
 	pageTable[i].dirty = FALSE;
@@ -145,6 +144,7 @@ AddrSpace::AddrSpace(OpenFile *executable)
 			noffH.initData.size, noffH.initData.inFileAddr);
     }
 
+    Print();
 }
 
 //----------------------------------------------------------------------
@@ -232,13 +232,14 @@ void AddrSpace::RestoreState()
 
 void 
 AddrSpace::Print() {
-    printf("page table dump: %d pages in total\n", numPages);
+    printf("SpaceID: %d \n",spaceID);
+    printf("页表输出:  总共 %d 页\n", numPages);
     printf("============================================\n");
-    printf("\tVirtPage, \tPhysPage\n");
+    printf("\t虚拟页, \t物理页\n");
     for (int i=0; i < numPages; i++) {
         printf("\t%d, \t\t%d\n", pageTable[i].virtualPage, pageTable[i].physicalPage);
     }
-    printf("============================================\n\n");
+    printf("============================================\n");
 }
 
 
